@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <meta charset="UTF-8">
+    <title>appointment</title>
+    <style>
+        #logdiv {
+            width: 100px;
+            height: 80px;
+            background-image: url("images/log.jpg");
+            background-size: cover;
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+
+        #hfdiv {
+            margin-left: 220px;
+            margin-top: -40px;
+        }
+
+        .hfsty {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+            margin-left: 20px;
+        }
+
+        #bigdiv {
+            width: 80%;
+            margin-left: 150px;
+        }
+    </style>
+</head>
+<body>
+<div style="background-color: darkgreen;width: 100%;height: 28px;">
+    <div style="margin-left: 1200px">
+        <a href="main" style="color: white">患者版</a>
+        <a href="#" style="color: white">学术版</a>
+        <a href="doctorLoginView" style="color: white">员工版</a>
+        <a href="#" style="color: white">EN版</a>
+    </div>
+</div>
+<div id="logdiv"></div>
+<div id="hfdiv">
+    <a class="hfsty" href="/appointment">预约挂号</a>
+    <a class="hfsty" href="">特色诊疗</a>
+    <a class="hfsty" href="showDoctors">医生介绍</a>
+    <a class="hfsty" href="">科室导航</a>
+    <a class="hfsty" href="showDrugs">药品展示</a>
+    <a class="hfsty" href="">医院公告</a>
+    <a class="hfsty" href="">新闻中心</a>
+    <a class="hfsty" href="">健康科普</a>
+    <a class="hfsty" href="singlePatient">个人信息</a>
+    <a class="hfsty" href="/index">返回首页</a>
+</div>
+<br/>
+<hr/>
+<div id="bigdiv">
+    您现在的位置： 首页>预约挂号<br/>
+    <h2 style="text-align: center">预约挂号</h2>
+    <form action="/getDoctorByDepartment" method="post">
+        请选择科室：<select name="deptId">
+        <div th:each="pb:${allDep}">
+            <option th:value="${pb.depId}" th:text="${pb.department}"></option>
+        </div>
+    </select>
+        <button type="submit" class="btn btn-success">查询</button>
+    </form>
+    <br/>
+    <table class="table table-hover">
+        <thead>
+        <tr style="text-align: center">
+            <th style="text-align: center" class="col-xs-2 col-md-1">科室图片</th>
+            <th style="text-align: center" class="col-xs-1 col-md-1">科室编号</th>
+            <th style="text-align: center" class="col-xs-1 col-md-1">科室名称</th>
+            <th style="text-align: center" class="col-xs-8 col-md-4">科室信息</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pa:${allDep}">
+            <td style="text-align: center"><img th:src="${pa.depImages}" width="100px" height="100px"/></td>
+            <td style="text-align: center" th:text="${pa.depId}"></td>
+            <td style="text-align: center" th:text="${pa.department}"></td>
+            <td th:text="${pa.departmentInfo}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

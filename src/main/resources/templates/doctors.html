@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>doctors</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        #logdiv {
+            width: 100px;
+            height: 80px;
+            background-image: url("images/log.jpg");
+            background-size: cover;
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+
+        #hfdiv {
+            margin-left: 220px;
+            margin-top: -40px;
+        }
+
+        .hfsty {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+            margin-left: 20px;
+        }
+
+        #bigdiv {
+            width: 95%;
+            margin-left: 50px;
+        }
+
+        #infodiv {
+            width: 1000px;
+            margin-left: 260px;
+            margin-top: -200px;
+        }
+
+        th {
+            background-color: #01763a;
+            font-size: 12px;
+            text-align: center;
+            color: white;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="background-color: darkgreen;width: 100%;height: 28px;">
+    <div style="margin-left: 1200px">
+        <a href="main" style="color: white">患者版</a>
+        <a href="#" style="color: white">学术版</a>
+        <a href="doctorLoginView" style="color: white">员工版</a>
+        <a href="#" style="color: white">EN版</a>
+    </div>
+</div>
+<div id="logdiv"></div>
+<div id="hfdiv">
+    <a class="hfsty" href="/appointment">预约挂号</a>
+    <a class="hfsty" href="">特色诊疗</a>
+    <a class="hfsty" href="showDoctors">医生介绍</a>
+    <a class="hfsty" href="">科室导航</a>
+    <a class="hfsty" href="showDrugs">药品展示</a>
+    <a class="hfsty" href="">医院公告</a>
+    <a class="hfsty" href="">新闻中心</a>
+    <a class="hfsty" href="">健康科普</a>
+    <a class="hfsty" href="singlePatient">个人信息</a>
+    <a class="hfsty" href="/index">返回首页</a>
+</div>
+<br/>
+<hr/>
+<div id="bigdiv">
+    您现在的位置： 首页>预约挂号><span th:text="${department}"></span>
+    <h2 style="text-align: center">预约挂号</h2>
+    <span th:text="${department}"></span>>专家医师：<br/><br/>
+    <div th:each="do:${doctorList}">
+        <div style="border: 1px ;width: 90%;height: 250px;margin-left: 50px;">
+            <div>
+                <img style="width: 180px;height: 240px;margin-left: 10px" th:src="${do.images}"/>
+            </div>
+            <div id="infodiv">
+                <span style="font-size: 30px;"><span name="doctorName" th:text="${do.doName}"></span></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span style="font-size: 20px;">医生ID:<span th:text="${do.doctorId}"></span></span><br>
+                性别：<span th:text="${do.gender}"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                科室：<span th:text="${do.department}"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                状态：<span th:text="${do.doStatus}"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                电话：<span th:text="${do.telphone}"></span><br>
+                信息：<span th:text="${do.doInfo}"></span><br/>
+            </div>
+        </div>
+    </div>
+    <span style="font-size: 20px">出诊信息：</span>
+    <table class="table table-bordered" style="margin-left: 10px" th:each="m:${linkedHashMap}">
+        <thead>
+        <tr>
+            <td style="background-color: forestgreen;color: white">医生ID</td>
+            <td style="background-color: forestgreen ;color: white" th:text="${m.key}"></th>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <div >
+                <p th:each="n:${m.value}">
+                <th th:text="${n.key}"></th>
+                </p>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>预约人数</td>
+            <div>
+                <p th:each="l:${m.value}">
+                <td th:text="${l.value}"></td>
+                </p>
+            </div>
+        </tr>
+        <tr >
+            <td>预约</td>
+            <p th:each="n:${m.value}">
+            <td><a class="btn btn-default" th:href="@{yuYue(doctorId=${m.key},date=${n.key})}">预约</a></td>
+<!--            <td><button class="btn btn-default" th:onclick="|yuYue(this,${m.key},${n.key})|">预约</button></td>-->
+    <!--        <td>
+            <button class="btn btn-default" id="yuyue" >预约</button>
+            <input type="hidden" id="doId" th:text="${m.key}"/>
+            <input type="hidden" id="dateId" th:text="${n.key}"/>
+            </td>
+            </p>-->
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+<script type="text/javascript">
+   /* $(function(){
+        $('#yuyue').click(function(){
+            var doctorId=$("doId").val();
+            var date=$("dateId").val();
+            $.ajax({
+               url:'yuYue',
+               type:'post',
+               dataType:'json',
+               data:{'doctorId':doctorId,'date':date},
+               success:function () {
+                   alert("预约成功");
+               },
+                error:function () {
+                    alert(doctorId);
+                }
+            });
+        });
+    });*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        #logdiv {
+            width: 100px;
+            height: 80px;
+            background-image: url("images/log.jpg");
+            background-size: cover;
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+
+        #hfdiv {
+            margin-left: 220px;
+            margin-top: -40px;
+        }
+
+        .hfsty {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+            margin-left: 20px;
+        }
+
+        #bigdiv {
+            width: 95%;
+            margin-left: 50px;
+        }
+
+        #smdiv {
+            margin-left: 30px;
+            margin-top: 10px;
+            float: left;
+            width: 250px;
+            height: 420px;
+            text-align: center;
+            border: 1px solid green;;
+        }
+
+        img {
+            width: 240px;
+            height: 350px;
+            margin-top: 2px;
+        }
+
+        /*   #nmspan{
+               margin-top: 100px;
+           }*/
+
+
+    </style>
+</head>
+<body>
+<div style="background-color: darkgreen;width: 100%;height: 28px;">
+    <div style="margin-left: 1200px">
+        <a href="main" style="color: white">患者版</a>
+        <a href="#" style="color: white">学术版</a>
+        <a href="doctorLoginView" style="color: white">员工版</a>
+        <a href="#" style="color: white">EN版</a>
+    </div>
+</div>
+<div id="logdiv"></div>
+<div id="hfdiv">
+    <a class="hfsty" href="/appointment">预约挂号</a>
+    <a class="hfsty" href="">特色诊疗</a>
+    <a class="hfsty" href="showDoctors">医生介绍</a>
+    <a class="hfsty" href="">科室导航</a>
+    <a class="hfsty" href="showDrugs">药品展示</a>
+    <a class="hfsty" href="">医院公告</a>
+    <a class="hfsty" href="">新闻中心</a>
+    <a class="hfsty" href="">健康科普</a>
+    <a class="hfsty" href="singlePatient">个人信息</a>
+    <a class="hfsty" href="/index">返回首页</a>
+</div>
+<br/>
+<hr/>
+<div id="bigdiv">
+    您现在的位置： 首页>医生介绍
+    <h2 style="text-align: center">医生介绍</h2>
+    <div style="text-align: center">
+        <button class="btn btn-default">心内科</button>
+        <button class="btn btn-default">感染内科</button>
+        <button class="btn btn-default">儿科</button>
+        <button class="btn btn-default">神经科</button>
+        <button class="btn btn-default">临床营养科</button>
+    </div>
+    <br/>
+    <div id="smdiv" th:each="do:${allDoc}" >
+        <a th:href="@{singleDoctor(doName=${do.doName})}">
+        <img th:src="${do.images}">
+        <span>姓名：<span  th:text="${do.doName}"></span></span><br/>
+        <span>科室：<span  th:text="${do.department}"></span></span><br/>
+        <span>电话：<span  th:text="${do.telphone}"></span></span>
+        </a>
+    </div>
+</div>
+<script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+/*    $(function () {
+        $('#smdiv').click(function () {
+            var text = $(this).text();
+            alert(text);
+        });
+    });*/
+
+    /*    $(function(){
+            $(document).click(function (e) {
+                alert($(e.target).attr("smdiv"));
+            })
+        })*/
+</script>
+</body>
+</html>

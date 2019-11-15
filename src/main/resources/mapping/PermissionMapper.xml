@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.mapper.PermissionMapper">
+    <resultMap id="perMap" type="com.demo.springboot.pojo.Permission">
+        <id column="per_Id" property="perId"></id>
+        <result column="menu_Name" property="menuName"></result>
+        <result column="per_Name" property="perName"></result>
+    </resultMap>
+    <sql id="perColumns">${alias}.per_Id,${alias}.menu_Name,${alias}.per_Name</sql>
+    <select id="findPermByLoginName" resultMap="perMap">
+        select 
+        <include refid="perColumns"><property name="alias" value="pe"/></include>
+        from
+            doctor do,
+            tb_doctor_department dode,
+            departments de,
+            tb_department_permissions depe,
+            permission pe
+        where
+            do.doctor_Id=dode.doctor_Id
+            and dode.dep_Id=de.dep_Id
+            and de.dep_Id=depe.dep_Id
+            and depe.per_Id=pe.per_Id
+            and do.do_Name=#{doName}
+    </select>
+</mapper>

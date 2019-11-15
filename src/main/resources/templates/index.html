@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        #bigdiv {
+            width: 100%;
+            height: 800px;
+            background-image: url("/images/xiehe.jpg");
+            background-size: cover;
+        }
+        #logdiv {
+            width: 150px;
+            height: 130px;
+            background-image: url("images/log.jpg");
+            margin-top: 10px;
+            margin-left: 100px;
+        }
+        #wxdiv{
+            width: 600px;
+            height: 80px;
+            margin-top: -60px;
+            margin-left: 760px;
+            background-image: url("/images/weixin1.jpg");
+            background-size: cover;
+        }
+        #hzdiv {
+            width: 280px;
+            height: 280px;
+            background-color: darkturquoise;
+            opacity: 0.95;
+            border-radius: 13px;
+            margin-left: 280px;
+            margin-top: 120px;
+            position: absolute;
+        }
+        #hzimg {
+            margin-left: 100px;
+            margin-top: 70px;
+        }
+        #xsdiv{
+            width: 280px;
+            height: 280px;
+            background-color: #f5e79e;
+            opacity: 0.95;
+            border-radius: 13px;
+            margin-left: 500px;
+            margin-top: 180px;
+            position: absolute;
+        }
+        #xsimg {
+            margin-left: 100px;
+            margin-top: 70px;
+        }
+        #ygdiv{
+            width: 280px;
+            height: 280px;
+            background-color: white;
+            opacity: 0.95;
+            border-radius: 13px;
+            margin-left: 710px;
+            margin-top: 120px;
+            position: absolute;
+        }
+        #ygimg {
+            margin-left: 100px;
+            margin-top: 70px;
+        }
+        #egdiv{
+            width: 280px;
+            height: 280px;
+            background-color: darkgreen;
+            opacity: 0.95;
+            border-radius: 13px;
+            margin-left: 920px;
+            margin-top: 180px;
+            position: absolute;
+        }
+        #egimg {
+            margin-left: 100px;
+            margin-top: 70px;
+        }
+    </style>
+</head>
+<body>
+<div id="bigdiv">
+
+    <div id="logdiv"></div>
+    <div id="wxdiv" onclick="window.location='main'">
+    </div>
+    <div id="hzdiv">
+        <img id="hzimg" src="images/hz.jpg"/><br/>
+        <h2 style="color: white;text-align: center">患者版</h2>
+        <div style="text-align: center">
+            <button type="button" class="btn btn-info" onclick=" window.location='main'"><h4>点击进入</h4></button>
+        </div>
+    </div>
+    <div id="xsdiv">
+        <img id="xsimg" src="images/xueshu.jpg"/>
+        <h2 style="color: white;text-align: center">学术版</h2>
+        <div style="text-align: center">
+            <button type="button" class="btn btn-warning" onclick=" window.location='#'"><h4>点击进入</h4></button>
+        </div>
+    </div>
+    <div id="ygdiv">
+        <img id="ygimg" src="images/yuangong.jpg"/>
+        <h2 style="color: black;text-align: center">员工版</h2>
+        <div style="text-align: center">
+            <button type="button" class="btn btn-default" onclick=" window.location='doctorLoginView'"><h4>点击进入</h4></button>
+        </div>
+    </div>
+    <div id="egdiv">
+        <img id="egimg" src="images/english.jpg"/>
+        <h2 style="color: black;text-align: center">ENGLISH</h2>
+        <div style="text-align: center">
+            <button type="button" class="btn btn-success" onclick=" window.location='#'"><h4>点击进入</h4></button>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

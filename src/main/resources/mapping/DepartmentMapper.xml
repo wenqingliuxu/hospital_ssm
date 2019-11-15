@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.mapper.DepartmentMapper">
+    <resultMap id="depMap" type="com.demo.springboot.pojo.Department">
+        <id column="dep_Id" property="depId"></id>
+        <result column="department" property="department"></result>
+        <result column="dep_Images" property="depImages"></result>
+        <result column="departmentInfo" property="departmentInfo"></result>
+    </resultMap>
+    <sql id="depColumns">${alias}.dep_Id,${alias}.department,${alias}.dep_Images,${alias}.departmentInfo</sql>
+    <select id="findAllDep" resultMap="depMap">
+        select
+        <include refid="depColumns"><property name="alias" value="dep"/></include>
+        from departments dep
+    </select>
+
+
+</mapper>

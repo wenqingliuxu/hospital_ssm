@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.mapper.PatientMapper">
+    <resultMap id="patientMap" type="com.demo.springboot.pojo.Patient">
+        <id column="patient_Id" property="patientId"></id>
+        <result column="pa_Name" property="paName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+        <result column="pa_Status" property="paStatus"></result>
+        <result column="date" property="date"></result>
+        <result column="tel" property="tel"></result>
+        <result column="password" property="password"></result>
+        <result column="doctor_Id" property="doctorId"></result>
+        <result column="do_Name" property="doName"></result>
+        <result column="telphone" property="telphone"></result>
+        <result column="images" property="images"></result>
+        <result column="do_Info" property="doInfo"></result>
+    </resultMap>
+    <select id="getPatientByPaName" resultMap="patientMap">
+        select * from
+        patient pa
+        /*join
+        doctor do
+        on pa.doctor_Id=do.doctor_Id*/
+        where pa_Name=#{paName}
+    </select>
+    <select id="getPatientNameCount" resultType="int">
+        select count(pa_Name) from patient where pa_Name=#{paName}
+    </select>
+    <update id="yuYue">
+        update patient set pa_Status='1',date=#{dateNow},doctor_Id=#{doctorId} where pa_Name=#{yonghuName}
+    </update>
+    <select id="getSigPatient" resultMap="patientMap">
+        select * from
+        patient pa
+        where pa.pa_Name=#{paName}
+    </select>
+    <select id="getSigPatientInfo" resultMap="patientMap">
+        select * from
+        patient pa
+        left outer join doctor do
+        on pa.doctor_Id=do.doctor_Id
+        where pa_Name=#{paName}
+    </select>
+    <insert id="register">
+        insert into patient(pa_Name,age,gender,pa_Status,tel,password) values (#{paName},#{age},#{gender},2,#{tel},#{password})
+    </insert>
+    <update id="delYuYue">
+        update patient set pa_Status=2,doctor_Id=0 where pa_Name=#{paName}
+    </update>
+</mapper>

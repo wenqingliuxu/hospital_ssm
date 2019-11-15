@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.mapper.DoctorMapper">
+    <resultMap id="docMap" type="com.demo.springboot.pojo.Doctor">
+        <id column="doctor_Id" property="doctorId"></id>
+        <result column="do_Name" property="doName"></result>
+        <result column="gender" property="gender"></result>
+        <result column="department" property="department"></result>
+        <result column="do_Status" property="doStatus"></result>
+        <result column="dep_Id" property="depId"></result>
+        <result column="telphone" property="telphone"></result>
+        <result column="images" property="images"></result>
+        <result column="do_Info" property="doInfo"></result>
+        <result column="pwd" property="pwd"></result>
+    </resultMap>
+    <sql id="doctorColumn">${alias}.doctor_Id,${alias}.do_Name,${alias}.gender,${alias}.do_Status,${alias}.telphone,${alias}.images,${alias}.do_Info</sql>
+    <select id="getDoctorByDepartment" resultMap="docMap">
+        select
+        *
+        from doctor do
+        join departments de
+        on do.dep_Id=de.dep_Id
+        where do.dep_Id=#{deptId}
+        and do.do_Status!=3
+    </select>
+    <select id="getCountByDate" resultType="int">
+        select
+        count(do.doctor_Id)
+        from doctor do
+        LEFT JOIN patient pa
+        on do.doctor_Id=pa.doctor_Id
+        where do.doctor_Id=#{doctorId}
+        and date like #{format1} '%'
+    </select>
+    <select id="findAllDoc" resultMap="docMap">
+        select
+        *
+        from doctor do
+        join departments de
+        on do.dep_Id=de.dep_Id
+        where do.do_Status!=3
+    </select>
+    <select id="findSigDoc" resultMap="docMap">
+        select
+        *
+        from doctor do
+        join departments de
+        on do.dep_Id=de.dep_Id
+        where do_Name=#{doName}
+    </select>
+    <insert id="doctorZhuCe">
+        <selectKey keyProperty="doctorId" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into doctor(do_Name,gender,dep_Id,do_Status,telphone,do_Info,pwd)
+        values (#{doName},#{gender},#{depId},3,#{telphone},#{doInfo},#{pwd})
+    </insert>
+    <insert id="addDocDeo">
+        insert into tb_doctor_department values(#{doctorId},#{depId})
+    </insert>
+    <select id="getdoctorNameCount" resultType="java.lang.Integer">
+        select count(do_Name) from doctor where do_Name=#{doName}
+    </select>
+    <update id="addImage">
+        update doctor set images=#{imgName} where do_Name=#{doName1}
+    </update>
+    <select id="findDoctorByLoginName" resultMap="docMap">
+        select *
+        from
+        doctor
+        where do_Name=#{doName}
+    </select>
+</mapper>

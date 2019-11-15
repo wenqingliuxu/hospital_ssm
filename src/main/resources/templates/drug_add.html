@@ -1,0 +1,45 @@
+<form id="ff" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="name">药名:</label>
+        <input class="easyui-validatebox" type="text" name="drName" data-options="required:true"/>
+    </div>
+    <div>
+        <label for="price">价格:</label>
+        <input class="easyui-validatebox" type="text" name="price" data-options="required:true"/>
+    </div>
+    <div>
+        <label for="num">数量:</label>
+        <input class="easyui-validatebox" type="text" name="num" data-options="required:true"/>
+    </div>
+    <div>
+        <label for="createDate">日期:</label>
+        <input class="easyui-validatebox" type="Date" name="createDate" data-options="required:true"/>
+    </div>
+    <div>
+        <label for="file">图片:</label>
+        <input class="easyui-validatebox" type="file" name="file" data-options="required:true"/>
+    </div>
+    <div>
+        <label for="dr_Info">详情:</label>
+        <input class="easyui-validatebox" type="text" name="drInfo" data-options="required:true"/>
+    </div>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="drugAdda()">立刻添加</a>
+</form>
+<script>
+    function drugAdda() {
+        $('#ff').form({
+            url: 'drugAdda',
+            onSubmit: function () {
+                // do some check
+                // return false to prevent submit;
+                return true;
+            },
+            success: function (data) {
+                var myData=JSON.parse(data);
+                $.messager.alert("提示",myData.message);
+            }
+        });
+        // submit the form
+        $('#ff').submit();
+    }
+</script>

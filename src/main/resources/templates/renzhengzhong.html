@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        #logdiv {
+            width: 100px;
+            height: 80px;
+            background-image: url("images/log.jpg");
+            background-size: cover;
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+
+        #hfdiv {
+            margin-left: 220px;
+            margin-top: -40px;
+        }
+        .hfsty {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+            margin-left: 20px;
+        }
+        #bigdiv {
+            width: 95%;
+            margin-left: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="background-color: darkgreen;width: 100%;height: 28px;">
+    <div style="margin-left: 1200px">
+        <a href="main" style="color: white">患者版</a>
+        <a href="#" style="color: white">学术版</a>
+        <a href="doctorLoginView" style="color: white">员工版</a>
+        <a href="#" style="color: white">EN版</a>
+    </div>
+</div>
+<div id="logdiv"></div>
+<br/>
+<hr/>
+<div id="bigdiv">
+    <h2 style="margin-top: 100px">温馨提示：您的资料正在审核中，请耐心等待！</h2>
+    <a class="btn btn-success" href="index" style="margin-top: 150px">确认</a>
+</div>
+</body>
+</html>

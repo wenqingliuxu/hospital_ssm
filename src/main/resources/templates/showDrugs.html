@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        #logdiv {
+            width: 100px;
+            height: 80px;
+            background-image: url("images/log.jpg");
+            background-size: cover;
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+
+        #hfdiv {
+            margin-left: 220px;
+            margin-top: -40px;
+        }
+        .hfsty {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+            margin-left: 20px;
+        }
+        #bigdiv {
+            width: 95%;
+            margin-left: 50px;
+        }
+        #smdiv {
+            margin-left: 30px;
+            margin-top: 10px;
+            float: left;
+            width: 250px;
+            height: 270px;
+            text-align: center;
+            border: 1px solid green;;
+        }
+        img{
+            width: 230px;
+            height: 200px;
+
+        }
+    </style>
+</head>
+<body>
+<div style="background-color: darkgreen;width: 100%;height: 28px;">
+    <div style="margin-left: 1200px">
+        <a href="main" style="color: white">患者版</a>
+        <a href="#" style="color: white">学术版</a>
+        <a href="doctorLoginView" style="color: white">员工版</a>
+        <a href="#" style="color: white">EN版</a>
+    </div>
+</div>
+<div id="logdiv"></div>
+<div id="hfdiv">
+    <a class="hfsty" href="/appointment">预约挂号</a>
+    <a class="hfsty" href="">特色诊疗</a>
+    <a class="hfsty" href="showDoctors">医生介绍</a>
+    <a class="hfsty" href="">科室导航</a>
+    <a class="hfsty" href="showDrugs">药品展示</a>
+    <a class="hfsty" href="">医院公告</a>
+    <a class="hfsty" href="">新闻中心</a>
+    <a class="hfsty" href="">健康科普</a>
+    <a class="hfsty" href="singlePatient">个人信息</a>
+    <a class="hfsty" href="/index">返回首页</a>
+</div>
+<br/>
+<hr/>
+<div id="bigdiv">
+    您现在的位置： 首页>药品展示
+    <h2 style="text-align: center">药品展示</h2>
+    <div id="smdiv" th:each="do:${drugList}" >
+        <a th:href="@{singleDrug(drugsId=${do.drugsId})}">
+            <img th:src="${do.images}">
+            <span >ID：<span  th:text="${do.drugsId}"></span></span><br/>
+            <span>药名：<span  th:text="${do.drName}"></span></span><br/>
+            <span>价格：<span  th:text="${do.price}"></span></span>
+        </a>
+    </div>
+</div>
+</body>
+</html>
